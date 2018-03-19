@@ -1,0 +1,29 @@
+# 690-libxml2
+# 
+#
+#
+# Any comments you wish to add
+#
+
+PKG="libxml2"
+PKG_VERSION="2.9.4"
+PKG_FILE="libxml2-${PKG_VERSION}.tar.gz"
+URL="ftp://xmlsoft.org/libxml2/libxml2-${PKG_VERSION}.tar.gz"
+MD5="ae249165c173b1ff386ee8ad676815f5"
+for i in PATCH{1..10}; do
+   unset $i
+done
+PATCH1="http://www.w3.org/XML/Test/xmlts20130923.tar.gz ef8fbe0c92efd9a60d7f320e211d10b2"
+
+( cat << "xEOFx"
+   ./configure --prefix=/usr --with-history &&
+   make
+   tar xf ../xmlts20130923.tar.gz
+   #make -k check > check.log || true
+   #make -k  || true
+   #make -k  || true
+   #make -k  || true
+   make -j1 install
+
+xEOFx
+) > tmp

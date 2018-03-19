@@ -1,0 +1,31 @@
+# 680-python2
+# 
+#
+#
+# Any comments you wish to add
+#
+
+PKG="python2"
+PKG_VERSION="2.7.14"
+PKG_FILE="Python-${PKG_VERSION}.tar.xz"
+URL="https://www.python.org/ftp/python/${PKG_VERSION}/Python-${PKG_VERSION}.tar.xz"
+MD5="1f6db41ad91d9eb0a6f0c769b8613c5b"
+for i in PATCH{1..10}; do
+   unset $i
+done
+PATCH1=""
+
+( cat << "xEOFx"
+   ./configure --prefix=/usr       \
+               --enable-shared     \
+               --with-system-expat \
+               --with-system-ffi   \
+               --enable-unicode=ucs4 &&
+   make
+   #make -k test || true
+   make -j1 install &&
+   chmod -v 755 /usr/lib/libpython2.7.so.1.0
+#   install -v -dm755 /usr/share/doc/python-${PKG_VERSION} &&
+
+xEOFx
+) > tmp

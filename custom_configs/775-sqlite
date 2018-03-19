@@ -1,0 +1,32 @@
+# 775-sqlite
+# 
+#
+#
+# Any comments you wish to add
+#
+
+PKG="sqlite"
+PKG_VERSION="3200000"
+PKG_FILE="sqlite-autoconf-${PKG_VERSION}.tar.gz"
+URL="http://sqlite.org/2017/sqlite-autoconf-${PKG_VERSION}.tar.gz"
+MD5="e262a28b73cc330e7e83520c8ce14e4d"
+for i in PATCH{1..10}; do
+   unset $i
+done
+PATCH1="http://sqlite.org/2017/sqlite-doc-${PKG_VERSION}.zip ed8f9d7dfb410853619e195af2e73250"
+
+( cat << "xEOFx"
+   unzip -q ../sqlite-doc-3200000.zip
+   ./configure --prefix=/usr --disable-static        \
+               CFLAGS="-g -O2 -DSQLITE_ENABLE_FTS3=1 \
+               -DSQLITE_ENABLE_COLUMN_METADATA=1     \
+               -DSQLITE_ENABLE_UNLOCK_NOTIFY=1       \
+               -DSQLITE_SECURE_DELETE=1              \
+               -DSQLITE_ENABLE_DBSTAT_VTAB=1" &&
+   make -j1
+   make -j1 install
+   install -v -m755 -d /usr/share/doc/sqlite-3.20.0 &&
+   cp -v -R sqlite-doc-3200000/* /usr/share/doc/sqlite-3.20.0
+   
+xEOFx
+) > tmp

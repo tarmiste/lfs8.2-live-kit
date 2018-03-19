@@ -1,0 +1,25 @@
+# 780-scons
+# 
+#
+#
+# Any comments you wish to add
+#
+
+PKG="scons"
+PKG_VERSION="2.5.1"
+PKG_FILE="scons-${PKG_VERSION}.tar.gz"
+URL="http://downloads.sourceforge.net/scons/scons-${PKG_VERSION}.tar.gz"
+MD5="aaaf09e1351a598f98d17b0cf1103e7a"
+for i in PATCH{1..10}; do
+   unset $i
+done
+PATCH1=""
+
+( cat << "xEOFx"
+   python setup.py install --prefix=/usr  \
+                           --standard-lib \
+                           --optimize=1   \
+                           --install-data=/usr/share
+
+xEOFx
+) > tmp
