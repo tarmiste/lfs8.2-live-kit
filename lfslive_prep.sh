@@ -45,8 +45,8 @@ fi
 # reasonably obtained by downloading.
 #
 mkdir -p $LFS/sources
-cp extras/certdata_20171225.txt $LFS/sources
-cp extras/certdata_20171225.txt $LFS/sources/certdata.txt
+#cp extras/certdata_20171225.txt $LFS/sources
+#cp extras/certdata_20171225.txt $LFS/sources/certdata.txt
 case $(uname -m) in
     # yaboot only needed for ppc...
     ppc* ) cp extras/yaboot_binary_deb_1.3.16-4.tar.xz $LFS/sources  
@@ -59,7 +59,7 @@ esac
 # patches & the like...
 #
 mkdir -p $LFS/collateral
-cp extras/jhalfs-2.4.tar.xz $LFS/collateral
+cp extras/jhalfs.tar.xz $LFS/collateral
 cp extras/LFS-BOOK-8.2-NOCHUNKS.html $LFS/collateral
 cp extras/blfs-book-8.2-html.tar.bz2 $LFS/collateral
 cp extras/blfs_root_8.2.tar.gz $LFS/collateral
@@ -77,8 +77,8 @@ esac
 mkdir $LFS_HOST
 
 # jhalfs
-cp extras/jhalfs-2.4.tar.xz $LFS_HOST
-tar xf extras/jhalfs-2.4.tar.xz -C $LFS_HOST
+cp extras/jhalfs.tar.xz $LFS_HOST
+tar xf extras/jhalfs.tar.xz -C $LFS_HOST
 
 # kernel config
 case $(uname -m) in
@@ -92,10 +92,10 @@ esac
 cp extras/lfs-book-8.2-xml.tar.gz $LFS_HOST
 
 # jhalfs custom configs for building live image
-cp custom_configs/* $LFS_HOST/jhalfs-2.4/custom/config
+cp custom_configs/* $LFS_HOST/jhalfs/custom/config
 case $(uname -m) in
     ppc* ) 
-        cp custom_ppc_configs/* $LFS_HOST/jhalfs-2.4/custom/config
+        cp custom_ppc_configs/* $LFS_HOST/jhalfs/custom/config
         cp extras/lfs82_anyarch_book.patch $LFS_HOST/
     ;;
 esac
