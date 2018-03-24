@@ -9,14 +9,14 @@
 #
 
 set -e
-LFS=/mnt/lfs81live_target
+LFS=/mnt/lfs82live_target
 if [ -d $LFS ]
 then
     echo $LFS already exists, aborting
     exit 1
 fi
 
-LFS_HOST=$HOME/lfs81live_host
+LFS_HOST=$HOME/lfs82live_host
 if [ -d $LFS_HOST ]
 then
     echo $LFS_HOST already exists, aborting
@@ -66,7 +66,7 @@ cp extras/blfs_root_8.2.tar.gz $LFS/collateral
 cp extras/lfs-book-8.2-xml.tar.gz $LFS/collateral
 case $(uname -m) in
     # LFS book patch only needed for ppc...
-    ppc* ) cp extras/lfs81_anyarch_book.patch $LFS/collateral
+    ppc* ) cp extras/lfs82_anyarch_book.patch $LFS/collateral
     ;;
 esac
 
@@ -96,7 +96,7 @@ cp custom_configs/* $LFS_HOST/jhalfs-2.4/custom/config
 case $(uname -m) in
     ppc* ) 
         cp custom_ppc_configs/* $LFS_HOST/jhalfs-2.4/custom/config
-        cp extras/lfs81_anyarch_book.patch $LFS_HOST/
+        cp extras/lfs82_anyarch_book.patch $LFS_HOST/
     ;;
 esac
 

@@ -76,8 +76,8 @@ LFSLIVE_PREP.SH:
    a LFS live host build area and another directory to contain
    the LFS live target build area.   These two directories are:
 
-   ~HOME/lfs81live_host
-   /mnt/lfs81live_target
+   ~HOME/lfs82live_host
+   /mnt/lfs82live_target
 
    If either of these two directories already exists, the script
    will abort.   If this happens, review the contents of the existing
@@ -100,7 +100,7 @@ LFSLIVE_PREP.SH:
 
 LFSLIVE BUILD:
 
-   Do: "cd ~HOME/lfs81live_host" 
+   Do: "cd ~HOME/lfs82live_host" 
 
    Find the tar archive of the LFS 8.2 book (xml format).   It can
    be unpacked and used as the book for jhalfs if needed.   Alternatively,
@@ -125,7 +125,7 @@ LFSLIVE BUILD:
       custom/config directory with the scripts needed to build the live
       image.
 
-   3) Select build directory of /mnt/lfs81live_target.
+   3) Select build directory of /mnt/lfs82live_target.
 
    4) Select download packages.   
 
@@ -154,11 +154,11 @@ HOST LIVE BUILD
    The jhalfs build has created a host_scripts directory and placed
    3 host scripts in it:
 
-   /mnt/lfs81live_target/host_scripts
+   /mnt/lfs82live_target/host_scripts
 
    To run the host scripts, do:
 
-   export LFS=/mnt/lfs81live_target
+   export LFS=/mnt/lfs82live_target
 
    $LFS/host_scripts/make_live_squashed_root.sh
 
@@ -172,11 +172,11 @@ HOST LIVE BUILD
    to reduce the size of the live image, then move the sources before 
    the make_live_squashed_root step and move them back after.  e.g:
 
-   sudo mv $LFS/sources /mnt/savelfs81sources
+   sudo mv $LFS/sources /mnt/savelfs82sources
 
    $LFS/host_scripts/make_live_squashed_root.sh
 
-   sudo mv /mnt/savelfs81sources $LFS/sources 
+   sudo mv /mnt/savelfs82sources $LFS/sources 
    
    $LFS/host_scripts/make_live_tree.sh
 
